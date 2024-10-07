@@ -2,6 +2,9 @@
 #include <SFML/OpenGL.hpp>
 #include <iostream>
 #include <limits>
+#include <chrono>
+
+
 
 void draw_circle(int center_x, int center_y, int radius)
 {
@@ -30,7 +33,37 @@ void draw_circle(int center_x, int center_y, int radius)
 			d = d + 2 * (x - y) + 2;
 			y--;
 		}
-		x++; // переход к следующему пикселю по x
+		x++; // переход к следующему пикселю по xvoid draw_circle(int center_x, int center_y, int radius)
+		{
+			glBegin(GL_POINTS); // говорим OpenGL, что будем рисовать точки
+			int x = 0;
+			int y = radius;
+			int d = 1 - radius;
+
+			while (x <= y) // рисуем до четверти (используем симметрию)
+			{
+				glVertex2i(center_x + x, center_y + y);
+				glVertex2i(center_x - x, center_y + y);
+				glVertex2i(center_x + x, center_y - y);
+				glVertex2i(center_x - x, center_y - y);
+				glVertex2i(center_x + y, center_y + x);
+				glVertex2i(center_x - y, center_y + x);
+				glVertex2i(center_x + y, center_y - x);
+				glVertex2i(center_x - y, center_y - x);
+
+				if (d < 0)
+				{
+					d = d + 2 * x + 1;
+				}
+				else // выходим за окружность --> уменьшить y
+				{
+					d = d + 2 * (x - y) + 2;
+					y--;
+				}
+				x++; // переход к следующему пикселю по x
+			}
+			glEnd();
+		}
 	}
 	glEnd();
 }
@@ -47,7 +80,7 @@ int main()
 		if (std::cin.fail())
 		{
 			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Invalid input. Enter a valid integer.\n";
 		}
 		else if (radius < 0 || radius > 400)
@@ -58,7 +91,7 @@ int main()
 	}
 
 
-	sf::Window window(sf::VideoMode(800, 600), "Bresenham Circle", sf::Style::Close);
+	sf::Window window(sf::VideoMode(800, 600), "Bresenham Circle");
 	window.setActive(true);
 	glOrtho(0, 800, 600, 0, -1, 1); // Установка ортографической проекции от (0, 0) до (800, 600)
 

@@ -25,4 +25,5 @@ include_directories(glad/include)
 add_subdirectory(Tests/window)
 add_subdirectory(Tests/Triangle)
 add_subdirectory(lab1)
+add_subdirectory(lab2)
 
