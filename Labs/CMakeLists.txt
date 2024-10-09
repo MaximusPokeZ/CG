@@ -12,6 +12,8 @@ find_package(glfw3 3.3 REQUIRED)
 
 find_package(OpenGL REQUIRED)
 
+find_package(Qt6 REQUIRED Widgets OpenGL REQUIRED)
+
 # find_package(GLUT REQUIRED)
 
 include_directories(${SFML_INCLUDE_DIRS})

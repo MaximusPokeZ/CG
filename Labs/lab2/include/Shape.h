@@ -1,19 +1,39 @@
 #ifndef LABS_SHAPE_H
 #define LABS_SHAPE_H
 
+#include <SFML/OpenGL.hpp>
+
 class Shape
 {
 public:
 
-	Shape(float cord_x_ = 0.0f, float cord_y_ = 0.0f, float cord_z_ = 0.0f);
-	virtual ~Shape();
+	Shape(float x_, float y_, float z_);
 
-	virtual void draw();
-	void set_cord(float new_x, float new_y, float new_z);
+	virtual ~Shape() = default;
+
+	virtual void draw() const = 0;
+
+	virtual void set_size(float size_) = 0;
+
+protected:
+
+	float x, y, z;
+};
+
+class Cube : public Shape
+{
 
 private:
 
-	float cord_x, cord_y, cord_z;
+	float size;
+
+public:
+
+	Cube(float x_, float y_, float z_, float size_);
+
+	void draw () const override;
+
+	void set_size(float size_) override;
 };
 
 
