@@ -14,11 +14,14 @@ find_package(OpenGL REQUIRED)
 
 find_package(Qt6 REQUIRED Widgets OpenGL REQUIRED)
 
+find_package(glm REQUIRED)
+
 # find_package(GLUT REQUIRED)
 
 include_directories(${SFML_INCLUDE_DIRS})
 include_directories(${OPENGL_INCLUDE_DIR})
 include_directories(${GLFW_INCLUDE_DIRS})
+include_directories(${GLM_INCLUDE_DIRS})
 # include_directories(${GLUT_INCLUDE_DIRS})
 
 add_library(glad STATIC glad/src/glad.c)

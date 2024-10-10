@@ -14,11 +14,13 @@ void Cube::set_size(float size_)
 }
 
 
-void Cube::draw() const
+void Cube::draw(const float angle) const
 {
 	glLoadIdentity();
-	glTranslatef(x, y, z);
-	glRotatef(45.0, 1.0, 0.0, 1.0);
+
+	glTranslatef(x, y, z - 5);
+
+	glRotatef(angle, 1.0f, 0.0f, 1.0f);
 
 	glBegin(GL_QUADS);
 	glColor3f(1.0f, 0.0f, 0.0f);

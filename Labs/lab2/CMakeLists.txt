@@ -18,7 +18,7 @@ target_include_directories(
 )
 
 target_link_libraries(shape glfw OpenGL::GL Qt6::Widgets Qt6::OpenGL)
-target_link_libraries(Window sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw OpenGL::GL Qt6::Widgets Qt6::OpenGL)
+target_link_libraries(Window glm::glm sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw OpenGL::GL Qt6::Widgets Qt6::OpenGL)
 
 include_directories(../glad/include)
 

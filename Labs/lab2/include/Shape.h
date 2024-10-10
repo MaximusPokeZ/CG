@@ -11,7 +11,7 @@ public:
 
 	virtual ~Shape() = default;
 
-	virtual void draw() const = 0;
+	virtual void draw(const float angle) const = 0;
 
 	virtual void set_size(float size_) = 0;
 
@@ -31,7 +31,7 @@ public:
 
 	Cube(float x_, float y_, float z_, float size_);
 
-	void draw () const override;
+	void draw (const float angle) const override;
 
 	void set_size(float size_) override;
 };
