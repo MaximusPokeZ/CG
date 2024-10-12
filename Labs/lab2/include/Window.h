@@ -18,11 +18,17 @@ public:
 
 	void run();
 	void add_shape(const std::shared_ptr<Shape>& shape);
+	void change_projection(const int& width, const int& height, bool& transitioning, bool& is_perspective, float& transition_progress, const float& transition_speed, const float& angle);
 
 private:
 
 	sf::RenderWindow window;
 	std::vector<std::shared_ptr<Shape>> shapes;
+
+	float ortho_left = -2.0f;
+	float ortho_right = 2.0f;
+	float ortho_bottom = -2.0f;
+	float ortho_top = 2.0f;
 };
 
 #endif //LABS_WINDOW_H

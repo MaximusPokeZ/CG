@@ -8,7 +8,7 @@
 
 void draw_circle(int center_x, int center_y, int radius)
 {
-	glBegin(GL_POINTS); // говорим OpenGL, что будем рисовать точки
+	glBegin(GL_POINTS);
 	int x = 0;
 	int y = radius;
 	int d = 1 - radius;
@@ -33,50 +33,23 @@ void draw_circle(int center_x, int center_y, int radius)
 			d = d + 2 * (x - y) + 2;
 			y--;
 		}
-		x++; // переход к следующему пикселю по xvoid draw_circle(int center_x, int center_y, int radius)
-		{
-			glBegin(GL_POINTS); // говорим OpenGL, что будем рисовать точки
-			int x = 0;
-			int y = radius;
-			int d = 1 - radius;
+		x++;
 
-			while (x <= y) // рисуем до четверти (используем симметрию)
-			{
-				glVertex2i(center_x + x, center_y + y);
-				glVertex2i(center_x - x, center_y + y);
-				glVertex2i(center_x + x, center_y - y);
-				glVertex2i(center_x - x, center_y - y);
-				glVertex2i(center_x + y, center_y + x);
-				glVertex2i(center_x - y, center_y + x);
-				glVertex2i(center_x + y, center_y - x);
-				glVertex2i(center_x - y, center_y - x);
-
-				if (d < 0)
-				{
-					d = d + 2 * x + 1;
-				}
-				else // выходим за окружность --> уменьшить y
-				{
-					d = d + 2 * (x - y) + 2;
-					y--;
-				}
-				x++; // переход к следующему пикселю по x
-			}
-			glEnd();
-		}
 	}
 	glEnd();
 }
 
 int main()
 {
-	int radius, add_pulse_radius = 0;
+	int radius, add_pulse_radius = 0, x, y;
 	bool pulse = false, increase = true;
 
 	while (true)
 	{
 		std::cout << "Enter the radius of rhe circle: ";
 		std::cin >> radius;
+		std::cin >> x;
+		std::cin >> y;
 		if (std::cin.fail())
 		{
 			std::cin.clear();
@@ -135,9 +108,11 @@ int main()
 		}
 
 		glClear(GL_COLOR_BUFFER_BIT);
-		draw_circle(400, 300, radius + add_pulse_radius);
+		draw_circle(x, y, radius + add_pulse_radius);
 		window.display();
 	}
+
+
 
 	return 0;
 }
